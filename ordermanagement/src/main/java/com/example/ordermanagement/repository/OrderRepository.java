@@ -21,6 +21,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	            Long statusId,
 	            String username
 	    );
+	    
+	    @Query("""
+	    		   SELECT o FROM Order o
+	    		   WHERE DATE(o.orderDate) = CURRENT_DATE
+	    		""")
+	    		List<Order> findTodayOrders();
 
 //    // Orders by status + assigned user
 //    List<Order> findByStatus_StatusIdAndAssignedUser_Username(

@@ -25,9 +25,6 @@ public class Order {
     @JoinColumn(name = "status_id", nullable = false)
     private Status status;
 
-    @ManyToOne
-    @JoinColumn(name = "payment_status_id", nullable = false)
-    private PaymentStatus paymentStatus;
 
     @ManyToOne
     @JoinColumn(name = "payment_mode_id", nullable = false)
@@ -77,13 +74,7 @@ public class Order {
 		this.status = status;
 	}
 
-	public PaymentStatus getPaymentStatus() {
-		return paymentStatus;
-	}
 
-	public void setPaymentStatus(PaymentStatus paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
 
 	public PaymentMode getPaymentMode() {
 		return paymentMode;

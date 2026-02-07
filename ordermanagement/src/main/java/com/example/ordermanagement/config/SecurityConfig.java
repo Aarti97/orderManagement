@@ -38,8 +38,9 @@ public class SecurityConfig {
                 // protected
                 .requestMatchers("/api/orders/**").authenticated()
                 .requestMatchers("/api/customers/**").authenticated()
-                .requestMatchers("/api/order2/**").authenticated()
+                .requestMatchers("/api/orders/today/**").authenticated()
                 .requestMatchers("/api/orders/status/**").authenticated()
+                
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

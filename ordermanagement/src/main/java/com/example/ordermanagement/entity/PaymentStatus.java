@@ -1,7 +1,7 @@
 package com.example.ordermanagement.entity;
 
 import jakarta.persistence.*;
-
+//no use
 @Entity
 @Table(name = "payment_status")
 public class PaymentStatus {

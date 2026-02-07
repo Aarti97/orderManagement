@@ -69,6 +69,9 @@ public class OrderService {
     public void delete(Long id) {
         orderRepository.deleteById(id);
     }
+    public List<Order> getTodayOrders() {
+        return orderRepository.findTodayOrders();
+    }
     
     
 //    @Transactional
@@ -114,8 +117,7 @@ public class OrderService {
     
     @Transactional
     public Order changeOrderStatus(Long orderId,
-                                   Long paymentModeId,
-                                   Long paymentStatusId) {
+                                   Long paymentModeId) {
 
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
@@ -139,7 +141,7 @@ public class OrderService {
         // PROCESS → COMPLETE
         else if (currentStatus == 2) {
 
-            if (paymentModeId == null || paymentStatusId == null) {
+            if (paymentModeId == null) {
                 throw new IllegalArgumentException(
                     "paymentModeId and paymentStatusId are required"
                 );
@@ -147,7 +149,7 @@ public class OrderService {
 
             order.setStatus(statusRepository.getReferenceById(3L));
             order.setPaymentMode(paymentModeService.getById(paymentModeId));
-            order.setPaymentStatus(paymentStatusService.getById(paymentStatusId));
+           
         }
 
         else {
